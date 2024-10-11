@@ -59,7 +59,7 @@ const createTour = (req, res) => {
   );
 };
 //ALL APIS
-
+app.route('/').get(getTour);
 app.route('/api/v1/tours').get(getAlltours).post(createTour);
 app.route('/api/v1/tours/:id').get(getTour);
 
