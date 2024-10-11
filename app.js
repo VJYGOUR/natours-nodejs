@@ -10,7 +10,6 @@ app.use((req, res, next) => {
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
-// for root route
 
 // GET ALL TOURS
 const getAlltours = (req, res) => {
@@ -61,9 +60,11 @@ const createTour = (req, res) => {
   );
 };
 //ALL APIS
+// for root route
 app.route('/').get((req, res) => {
-  res.send('Hello world');
+  res.send('hurray done i have change it ');
 });
+///////////////////////////////////////////////////////
 app.route('/api/v1/tours').get(getAlltours).post(createTour);
 app.route('/api/v1/tours/:id').get(getTour);
 
