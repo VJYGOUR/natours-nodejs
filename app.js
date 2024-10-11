@@ -62,7 +62,7 @@ const createTour = (req, res) => {
 //ALL APIS
 // for root route
 app.route('/').get((req, res) => {
-  res.send('hurray done i have change it ');
+  res.send('hello world ');
 });
 ///////////////////////////////////////////////////////
 app.route('/api/v1/tours').get(getAlltours).post(createTour);
