@@ -12,6 +12,15 @@ exports.checkID = (req, res, next, val) => {
   }
   next();
 };
+exports.checkBody = (req, res, next) => {
+  if (!req.body.name || req.body.price) {
+    return res.status().json({
+      status: 'fail',
+      message: 'Missing name or price',
+    });
+  }
+  next();
+};
 // GET ALL TOURS
 exports.getAlltours = (req, res) => {
   console.log(req.requestTime);
@@ -26,6 +35,7 @@ exports.getAlltours = (req, res) => {
 };
 //GET TOUR
 exports.getTour = (req, res) => {
+  const id = req.params.id * 1;
   const tour = tours.find((el) => el.id === id);
 
   res.status(200).json({

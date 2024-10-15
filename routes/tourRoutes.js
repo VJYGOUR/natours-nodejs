@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-router.param('id', checkID);
+
 const {
   getAlltours,
   createTour,
   getTour,
   checkID,
+  checkBody,
 } = require('../contollers/tourController');
-router.route('/').get(getAlltours).post(createTour);
+router.param('id', checkID);
+router.route('/').get(getAlltours).post(checkBody, createTour);
 router.route('/:id').get(getTour);
 module.exports = router;
