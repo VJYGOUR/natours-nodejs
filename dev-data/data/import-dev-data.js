@@ -12,10 +12,33 @@ mongoose.connect(DB).then((con) => {
   console.log(`DB connection successfully`);
 });
 //READ JSON FILES
-const tours = fs.readFileSync('tours-simple.json', 'utf-8');
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8')
+);
 //IMPORT DATA INTO DATABASE
 const importData = async () => {
   try {
-    await T;
-  } catch (err) {}
+    await Tour.create(tours);
+    console.log('DATA SUCCESSFULLY LOADED');
+  } catch (err) {
+    console.log(err);
+  }
+  process.exit();
 };
+//DELETE ALL DATA FROM DATABASE
+const deleteData = async () => {
+  try {
+    await Tour.deleteMany();
+    console.log('DATA SUCCESSFULLY Deleted');
+  } catch (err) {
+    console.log(err);
+  }
+  process.exit();
+};
+if (process.argv[2] === '--import') {
+  importData();
+} else if (process.argv[2] === '--delete') {
+  deleteData();
+}
+
+console.log(process.argv);
